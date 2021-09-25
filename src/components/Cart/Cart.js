@@ -19,11 +19,11 @@ const Cart = (props) => {
             <h3>Order Summary</h3>
             <h5>Items ordered : {props.cart.length}</h5>
             <br />
-            <p>Items price: <span>${total.toFixed(2)}</span></p>
-            <p>Shipping & Handling: <span>${Handling.toFixed(2)}</span></p>
-            <p>Total before tax: <span>${beforeTax.toFixed(2)}</span></p>
-            <p>Estimated Tax: <span>${tax.toFixed(2)}</span></p>
-            <p>Order Total: <span>${orderTotal.toFixed(2)}</span></p>
+            <p>Items price: <span className="id1">${total.toFixed(2)}</span></p>
+            <p>Shipping & Handling: <span className="id2">${Handling.toFixed(2)}</span></p>
+            <p>Total before tax: <span className="id3">${beforeTax.toFixed(2)}</span></p>
+            <p>Estimated Tax: <span className="id4">${tax.toFixed(2)}</span></p>
+            <p id="total">Order Total: <span className="id5" id="total">${orderTotal.toFixed(2)}</span></p>
         </div>
     );
 };
