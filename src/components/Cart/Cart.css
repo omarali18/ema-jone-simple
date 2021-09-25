@@ -1,6 +1,7 @@
 
 .cart{
     margin-top: 20px;
+    margin-left: 20px;
 }
 .cart h3, h5{
     text-align: center;
@@ -33,4 +34,16 @@
 }
 .id5{
     margin-left: 32%;
+}
+.cart button{
+    background-color: #F0C14B;
+    width: 50%;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 18px;
+}
+.cart div{
+    /* text-align: center; */
+    margin-left: 15%;
 }
