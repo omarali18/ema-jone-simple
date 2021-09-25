@@ -1,6 +1,6 @@
 .shop-container{
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
 }
 .product-container{
     border-right: 1px solid lightgray;
@@ -8,7 +8,4 @@
 }
 .card-container{
     /* border: 2px solid green; */
-}
-.card-container h3, h5{
-    text-align: center;
 }

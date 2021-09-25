@@ -1,0 +1,17 @@
+
+.cart{
+    margin-top: 20px;
+}
+.cart h3, h5{
+    text-align: center;
+}
+.cart p{
+    font-size: 15px;
+    /* margin-top: 0;
+    padding-top: 0; */
+}
+.cart p span{
+    color: black;
+    font-size: 15px;
+    margin-left: 60px;
+}

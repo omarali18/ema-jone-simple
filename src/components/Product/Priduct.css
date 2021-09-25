@@ -9,3 +9,11 @@
     display: flex;
     justify-content: space-around;
 }
+.condition button{
+    background-color: #F0C14B;
+    width: 100%;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 18px;
+}
