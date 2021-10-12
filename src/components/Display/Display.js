@@ -7,10 +7,14 @@ import "./Display.css"
 const Display = () => {
     const [products, setProducts] = useState([])
     const [cart, setCart] = useState([])
+    const [searchProducts, setSearchProduct] = useState([])
     useEffect(() => {
         fetch("./products.json")
             .then(res => res.json())
-            .then(data => setProducts(data))
+            .then(data => {
+                setProducts(data)
+                setSearchProduct(data)
+            })
     }, []);
     const addBtnHandler = (product) => {
         let addProduct = [...cart, product]
@@ -18,8 +22,15 @@ const Display = () => {
 
         //Add to local Storage
         addToDb(product.key)
-        console.log("display", product.key);
     }
+
+    const searchFiealdhandle = (e) => {
+        const searchText = e.target.value
+
+        const metchedProduct = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()))
+        setSearchProduct(metchedProduct)
+    }
+
     useEffect(() => {
         const getStoreItem = getStoredCart()
         if (products.length) {
@@ -39,17 +50,18 @@ const Display = () => {
     return (
         <div>
             <div className="search">
-                <input type="text" placeholder="Type here to search" name="" id="" />
+                <input onChange={searchFiealdhandle} type="text" placeholder="Type here to search" name="" id="" />
                 <i className="fas fa-shopping-cart"></i>
                 <span>{cart.length}</span>
             </div>
             <div className="shop-container">
                 <div className="product-container">
-                    {products.map(product => <Product
-                        product={product}
-                        key={product.key}
-                        addBtnHandler={addBtnHandler}
-                    />)}
+                    {
+                        searchProducts.map(product => <Product
+                            product={product}
+                            key={product.key}
+                            addBtnHandler={addBtnHandler}
+                        />)}
 
                 </div>
                 <div className="card-container">
