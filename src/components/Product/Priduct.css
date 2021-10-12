@@ -9,17 +9,15 @@
     display: flex;
     justify-content: space-around;
 }
+
 .rating span{
     padding: 0;
     margin-left: 0;
-    /* color: red; */
 }
 .rating .empty-icon{
     color: #F0C14B;
 }
-/* .rating .full-icon{
-    color: #F0C14B;
-} */
+
 .condition button{
     background-color: #F0C14B;
     width: 100%;
@@ -27,4 +25,8 @@
     border: 1px solid gray;
     border-radius: 5px;
     font-size: 18px;
+}
+
+.Features{
+    margin-top: 10px;
 }
