@@ -1,10 +1,11 @@
 import React from 'react';
+import useProducts from '../../hooks/useProducts';
 import "./Cart.css"
 
 const Cart = (props) => {
     // console.log(props.cart);
     const { cart } = props;
-    // console.log("card", cart);
+    console.log("card", cart);
     let total = 0;
     let itemOrder = 0
     for (const product of cart) {
@@ -21,6 +22,9 @@ const Cart = (props) => {
     const tax = beforeTax * .05;
     const orderTotal = beforeTax + tax;
     // console.log(total);
+    //==================================================
+    /* const { itemOrder, total, Handling, beforeTax, tax, orderTotal } = useProducts()*/
+
     return (
         <div className="cart">
             <h3>Order Summary</h3>
