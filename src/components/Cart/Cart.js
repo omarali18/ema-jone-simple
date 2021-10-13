@@ -35,7 +35,11 @@ const Cart = (props) => {
             <p>Total before tax: <span className="id3">${beforeTax.toFixed(2)}</span></p>
             <p>Estimated Tax: <span className="id4">${tax.toFixed(2)}</span></p>
             <p id="total">Order Total: <span className="id5" id="total">${orderTotal.toFixed(2)}</span></p>
-            <div><button>Review your order</button></div>
+            <div>
+                {
+                    props.children
+                }
+            </div>
         </div>
     );
 };

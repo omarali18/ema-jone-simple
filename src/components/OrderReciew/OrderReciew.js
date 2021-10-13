@@ -3,12 +3,13 @@ import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import Cart from '../Cart/Cart';
 import ReviewItem from '../ReviewItem/ReviewItem';
-import { deleteFromDb } from '../../utilities/fakedb';
+import { clearTheCart, deleteFromDb } from '../../utilities/fakedb';
+import { Link, useHistory } from 'react-router-dom';
 
 const OrderReciew = () => {
     const { products, setProducts } = useProducts()
     const { cart, setCart } = useCart(products)
-    console.log(cart);
+    const history = useHistory()
     const removeItem = (removeItem) => {
 
         // const allRemoveProduct = []
@@ -17,7 +18,11 @@ const OrderReciew = () => {
 
         deleteFromDb(removeItem.key)
     }
-    // console.log(cart);
+
+    const handlePlaceOrder = (key) => {
+        clearTheCart()
+        history.push(key)
+    }
     return (
         <div>
             <div className="shop-container">
@@ -31,7 +36,12 @@ const OrderReciew = () => {
                     }
                 </div>
                 <div className="card-container">
-                    <Cart cart={cart} />
+                    <Cart cart={cart}>
+                        {/* <Link to="/PlaceOrder">
+                            <button onClick={() => handlePlaceOrder("placeorder")}>Place Order</button>
+                        </Link> */}
+                        <button onClick={() => handlePlaceOrder("placeorder")}>Place Order</button>
+                    </Cart>
                 </div>
             </div>
         </div>
