@@ -29,6 +29,7 @@ function App() {
             <Inventory></Inventory>
           </Route>
           <Route path="/placeorder">
+            <Header></Header>
             <PlaceOrder></PlaceOrder>
           </Route>
           <Route exact path="*">

@@ -18,6 +18,7 @@ const useProducts = () => {
     }, []);
     const addBtnHandler = (product) => {
         let addProduct = [...cart, product]
+        console.log(addProduct);
         setCart(addProduct);
 
         //Add to local Storage

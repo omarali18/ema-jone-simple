@@ -49,7 +49,7 @@ const Display = () => {
     //     }
     // }, [products])
     //=====================================
-    const { itemOrder, searchFiealdhandle, cart, searchProducts, addBtnHandler } = useProducts()
+    const { itemOrder, searchFiealdhandle, searchProducts, addBtnHandler } = useProducts()
     // console.log("display", cart);
 
     return (
@@ -71,7 +71,7 @@ const Display = () => {
 
                 </div>
                 <div className="card-container">
-                    <Cart cart={cart}>
+                    <Cart >
                         <Link to="/review"><button>Review your order</button></Link>
                     </Cart>
                 </div>
