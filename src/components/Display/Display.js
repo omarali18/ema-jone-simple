@@ -49,7 +49,7 @@ const Display = () => {
     // }, [products])
     //=====================================
     const { itemOrder, searchFiealdhandle, cart, searchProducts, addBtnHandler } = useProducts()
-    console.log("display", cart);
+    // console.log("display", cart);
 
     return (
         <div>

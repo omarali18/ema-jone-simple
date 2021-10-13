@@ -61,7 +61,7 @@ const useProducts = () => {
         itemOrder = itemOrder + product.quantity
 
     }
-    console.log(itemOrder);
+    // console.log(itemOrder);
 
     const Handling = total * .03
     const beforeTax = total + Handling;

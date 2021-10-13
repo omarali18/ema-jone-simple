@@ -5,6 +5,9 @@
     border-bottom: 1px solid lightgray;
     margin-right: 8px;
 }
+.product-name{
+    color: blue;
+}
 .config{
     display: flex;
     justify-content: space-around;

@@ -24,7 +24,7 @@ const Product = (props) => {
                 <img src={img} alt="" />
             </div>
             <div>
-                <h6>{name}</h6>
+                <h4 className="product-name">{name}</h4>
                 <div className="config">
                     <div className="condition">
                         <p>by : {seller}</p>
