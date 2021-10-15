@@ -3,9 +3,9 @@ import useProducts from '../../hooks/useProducts';
 import "./Cart.css"
 
 const Cart = (props) => {
-    // console.log(props.cart);
-    // const { cart } = props;
-    const { cart } = useProducts()
+    // console.log("card is ", props.cart);
+    const { cart } = props;
+    // const { cart } = useProducts()
     // console.log("card", cart);
     let total = 0;
     let itemOrder = 0

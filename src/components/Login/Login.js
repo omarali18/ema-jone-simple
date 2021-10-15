@@ -1,8 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import "./Login.css"
 
 const Login = () => {
+
+    const { handleGoogleSignIn } = useAuth()
+    const location = useLocation()
+    const history = useHistory()
+    const redirect_url = location.state?.from || "/shop"
+
+    const googleRedirectLogin = () => {
+        handleGoogleSignIn()
+            .then(result => {
+                history.push(redirect_url)
+            })
+    }
+
     return (
         <div className="login-form">
             <div className="form-contianer">
@@ -18,7 +32,7 @@ const Login = () => {
                 <p>New to Ema John <Link to="/register">Create an Account.</Link> </p>
                 <div>================Or===============</div>
                 <div>
-                    <button>Sign in With Google.</button>
+                    <button onClick={googleRedirectLogin}>Sign in With Google.</button>
                 </div>
             </div>
         </div>

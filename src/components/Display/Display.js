@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
@@ -7,49 +8,59 @@ import Product from '../Product/Product';
 import "./Display.css"
 
 const Display = () => {
-    // const [products, setProducts] = useState([])
-    // const [cart, setCart] = useState([])
-    // const [searchProducts, setSearchProduct] = useState([])
-    // useEffect(() => {
-    //     fetch("./products.json")
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setProducts(data)
-    //             setSearchProduct(data)
-    //         })
-    // }, []);
-    // const addBtnHandler = (product) => {
-    //     let addProduct = [...cart, product]
-    //     setCart(addProduct);
+    const [products, setProducts] = useState([])
+    const [cart, setCart] = useState([])
+    const [searchProducts, setSearchProduct] = useState([])
+    useEffect(() => {
+        fetch("./products.json")
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data)
+                setSearchProduct(data)
+            })
+    }, []);
+    const addBtnHandler = (product) => {
+        const exists = cart.find(pd => pd.key === product.key)
+        let newProduct = []
+        if (exists) {
+            const rest = cart.filter(pd => pd.key !== product.key)
+            exists.quantity = exists.quantity + 1;
+            newProduct = [...rest, product]
+        }
+        else {
+            product.quantity = 1;
+            newProduct = [...cart, product]
+        }
+        setCart(newProduct);
 
-    //     //Add to local Storage
-    //     addToDb(product.key)
-    // }
+        //Add to local Storage
+        addToDb(product.key)
+    }
 
-    // const searchFiealdhandle = (e) => {
-    //     const searchText = e.target.value
+    const searchFiealdhandle = (e) => {
+        const searchText = e.target.value
 
-    //     const metchedProduct = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()))
-    //     setSearchProduct(metchedProduct)
-    // }
+        const metchedProduct = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()))
+        setSearchProduct(metchedProduct)
+    }
 
-    // useEffect(() => {
-    //     const getStoreItem = getStoredCart()
-    //     if (products.length) {
-    //         const cullectProduct = []
-    //         for (const key in getStoreItem) {
-    //             const addedProduct = products.find(product => product.key === key)
-    //             if (addedProduct) {
-    //                 const quantity = getStoreItem[key]
-    //                 addedProduct.quantity = quantity
-    //                 cullectProduct.push(addedProduct)
-    //             }
-    //         }
-    //         setCart(cullectProduct);
-    //     }
-    // }, [products])
+    useEffect(() => {
+        const getStoreItem = getStoredCart()
+        if (products.length) {
+            const cullectProduct = []
+            for (const key in getStoreItem) {
+                const addedProduct = products.find(product => product.key === key)
+                if (addedProduct) {
+                    const quantity = getStoreItem[key]
+                    addedProduct.quantity = quantity
+                    cullectProduct.push(addedProduct)
+                }
+            }
+            setCart(cullectProduct);
+        }
+    }, [products])
     //=====================================
-    const { itemOrder, searchFiealdhandle, searchProducts, addBtnHandler } = useProducts()
+    const { itemOrder } = useCart(products)
     // console.log("display", cart);
 
     return (
@@ -57,7 +68,7 @@ const Display = () => {
             <div className="search">
                 <input onChange={searchFiealdhandle} type="text" placeholder="Type here to search" name="" id="" />
                 <i className="fas fa-shopping-cart"></i>
-                <span>{itemOrder}</span>
+                <span>{cart.length}</span>
             </div>
             <div className="shop-container">
                 <div className="product-container">
@@ -71,7 +82,7 @@ const Display = () => {
 
                 </div>
                 <div className="card-container">
-                    <Cart >
+                    <Cart cart={cart} >
                         <Link to="/review"><button>Review your order</button></Link>
                     </Cart>
                 </div>

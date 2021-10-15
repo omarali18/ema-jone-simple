@@ -1,4 +1,3 @@
-import { faFontAwesomeLogoFull } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { addToDb, getStoredCart } from "../utilities/fakedb";
 
@@ -7,6 +6,7 @@ import { addToDb, getStoredCart } from "../utilities/fakedb";
 const useProducts = () => {
     const [products, setProducts] = useState([])
     const [cart, setCart] = useState([])
+    const [isCart, setIsCart] = useState([])
     const [searchProducts, setSearchProduct] = useState([])
     useEffect(() => {
         fetch("./products.json")
@@ -16,10 +16,10 @@ const useProducts = () => {
                 setSearchProduct(data)
             })
     }, []);
+    // console.log("product is", products);
     const addBtnHandler = (product) => {
-        let addProduct = [...cart, product]
-        console.log(addProduct);
-        setCart(addProduct);
+        let addProduct = [...isCart, product]
+        setIsCart(addProduct);
 
         //Add to local Storage
         addToDb(product.key)
@@ -43,6 +43,7 @@ const useProducts = () => {
                     addedProduct.quantity = quantity
                     cullectProduct.push(addedProduct)
                 }
+
             }
             setCart(cullectProduct);
         }

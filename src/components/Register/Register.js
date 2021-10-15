@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAuthentic from '../../hooks/useFirebase';
 
 const register = () => {
+
+    const { handleGoogleSignIn } = useAuthentic
+
     return (
         <div className="login-form">
             <div className="form-contianer">
                 <h1>Create an account.</h1>
-                <form onSubmit="">
+                <form >
                     <input type="text" placeholder="Your Name" name="" id="" />
                     <br />
                     <input type="email" placeholder="Enter your Email" name="" id="" />
@@ -21,7 +25,7 @@ const register = () => {
 
                 <div>================Or===============</div>
                 <div>
-                    <button>Sign in With Google.</button>
+                    <button onClick={handleGoogleSignIn}>Sign in With Google.</button>
                 </div>
             </div>
         </div>

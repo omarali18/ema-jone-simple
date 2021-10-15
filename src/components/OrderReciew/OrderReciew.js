@@ -20,9 +20,9 @@ const OrderReciew = () => {
     }
 
     const checkDb = getDb()
-    console.log(checkDb);
     const handlePlaceOrder = (key) => {
-        clearTheCart()
+        // setCart([])
+        // clearTheCart()
 
         if (checkDb) {
             history.push(key)
@@ -41,11 +41,11 @@ const OrderReciew = () => {
                     }
                 </div>
                 <div className="card-container">
-                    <Cart >
+                    <Cart cart={cart} >
                         {/* <Link to="/PlaceOrder">
                             <button onClick={() => handlePlaceOrder("placeorder")}>Place Order</button>
                         </Link> */}
-                        <button onClick={() => handlePlaceOrder("placeorder")}>Place Order</button>
+                        <button onClick={() => handlePlaceOrder("shipping")}>Proceed to shipping</button>
                     </Cart>
                 </div>
             </div>
