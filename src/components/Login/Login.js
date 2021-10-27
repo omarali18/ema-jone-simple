@@ -29,7 +29,7 @@ const Login = () => {
                     <input type="submit" value="Submit" />
 
                 </form>
-                <p>New to Ema John <Link to="/register">Create an Account.</Link> </p>
+                <p>New to Ema John Website <Link to="/register"> Create an Account.</Link> </p>
                 <div>================Or===============</div>
                 <div>
                     <button onClick={googleRedirectLogin}>Sign in With Google.</button>
