@@ -1,13 +1,35 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
+import { clearTheCart, getStoredCart } from '../../utilities/fakedb';
 import "./Shipping.css"
 
 const Shipping = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const { loginUser } = useAuth()
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        const storageCart = getStoredCart()
+        data.order = storageCart;
+        console.log(data);
+
+        fetch("http://localhost:5000/order", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                if (result.acknowledged) {
+                    alert("Order process successfully")
+                    clearTheCart()
+                    reset()
+                }
+            })
+    };
 
     return (
         <div>

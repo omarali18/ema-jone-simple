@@ -8,12 +8,13 @@ const useProducts = () => {
     const [cart, setCart] = useState([])
     const [isCart, setIsCart] = useState([])
     const [searchProducts, setSearchProduct] = useState([])
+
     useEffect(() => {
-        fetch("./products.json")
+        fetch("http://localhost:5000/products")
             .then(res => res.json())
             .then(data => {
-                setProducts(data)
-                setSearchProduct(data)
+                setProducts(data.product)
+                setSearchProduct(data.product)
             })
     }, []);
     // console.log("product is", products);
